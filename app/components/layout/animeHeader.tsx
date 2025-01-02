@@ -4,7 +4,7 @@ import { SearchBar } from '../root/seachBar';
 
 const AnimeHeader = () => {
     return (
-        <nav className="bg-slate-600 rounded-b-lg">
+        <nav className="bg-slate-600 ">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 flex py-3 items-center justify-between">
                 <h1 className='text-white'>am Archives</h1>
                 <SearchBar />
