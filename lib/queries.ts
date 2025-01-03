@@ -49,6 +49,47 @@ query ($id: Int) {
     format
     status
     duration
+    startDate {
+      year
+      month
+      day
+    }
+    studios {
+      edges {
+        node {
+          id
+          name
+          siteUrl
+        }
+        isMain
+      }
+    }
+    trailer {
+      id  
+      site
+      thumbnail
+    }
+    characters {
+      edges {
+        node {
+          name {
+            full
+          }
+          image {
+            large
+          }
+        }
+        role
+        voiceActors {
+          name {
+            full
+          }
+          image {
+            large
+          }
+        }
+      }
+    }
   }
 }
 `

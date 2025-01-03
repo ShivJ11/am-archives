@@ -79,6 +79,15 @@
     padding-left: 0.25rem ;
     padding-right: 0.25rem ;
 }
+.border-box{
+    display: inline-flex;
+    align-items: center;           
+    justify-content: center;  
+    border: 1px solid ;
+    border-radius: 5px;
+    padding-left: 0.25rem ;
+    padding-right: 0.25rem ;
+}
 .dot {
     width: 4px;
     height: 4px;
@@ -119,26 +128,43 @@
 
 }
 @media (min-width:1200px) {
+    .detail-page-first-section{
+        width: 20%;
+    }
     .detail-page-mid-section{
-        padding-left: 70px;
+        /* padding-left: 70px; */
+        width: 50%;
     }   
     .detail-page-last-section{
         padding-left: 70px;
+        width:30%
+    }
+}
+@media (max-width:900px) and (min-width:650px) {
+    .detail-page-first-section{
+        width: 35% !important;
     }
 }
 @media (max-width:1200px) {
     .detail-page-first-section{
-        width: 50%;
+        width: 25%;
+        display: flex;
+      /* Horizontal centering */
+    align-items: center;  
     }
     .detail-page-mid-section{
-        width: 50%;
+        width: 65%;
     }
     .detail-page-last-section{
+        padding-top: 10px;
         width: 100%;
+    }
+    .detail-page-last-section-separator{
+        display: none;
     }
     
 }
-@media (max-width: 575px) {
+@media (max-width: 650px) {
     .detail-page-image{
         height: 207px;
         justify-content: center;
@@ -150,9 +176,35 @@
         width: 100%;
     }
     .detail-page-mid-section{
+        padding-top: 10px;
         width: 100%;
     }
     .detail-page-last-section{
-        width: 100%;
+        padding-top: 10px;
+        width: 100%;       
     }
+    .pg-box{
+        display: none;
+    }
+}
+@media (max-width: 900px) {
+    .characters-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important; /* 3 items per row */
+    }
+}
+@media (max-width: 650px) {
+    .characters-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important; 
+        row-gap: 2rem;
+    }
+}
+@media (max-width: 472px) {
+    .characters-list {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important; 
+        row-gap: 2rem;
+    }
+}
+
+.characters-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 items per row by default */
 }
