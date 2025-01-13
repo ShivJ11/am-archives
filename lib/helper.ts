@@ -1,4 +1,7 @@
-export function truncateDescription (description: string, maxLength: number){
+export function truncateDescription (description: string |undefined, maxLength: number){
+  if (!description) {
+    return ""; 
+  }
     if (description.length > maxLength) {
       return description.slice(0, maxLength) + "...";
     }

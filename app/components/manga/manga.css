@@ -1,0 +1,106 @@
+.carousel-container {
+    padding: 80px;
+    height: 100%;
+    min-height: 475px;
+    width: 100%;
+}
+
+.carousel-image-container {    
+    width: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+.cover-image-container {
+    width: 214px;
+    min-width: 214px;
+    height: 306px;
+    display: flex;
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+}
+
+.cover-image-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.carousel-right-side{
+    padding-left: 20px;
+    position: relative;
+}
+.manga-title{
+    filter: grayscale(1);
+}
+.manga-tags{
+    display: inline-flex;
+    background-color: #b0e3af;
+    align-items: center;           
+    justify-content: center;  
+    border: 1px solid #b0e3af;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #333;
+    padding-left: 0.25rem ;
+    padding-right: 0.25rem ;
+
+}
+.manga-author{
+    position: absolute;
+    bottom: 0; 
+    right: 0;      
+}
+.scroll-area-height{
+    height: 140px;
+}
+.latest-update-container{
+    padding: 30px 80px 30px 80px;
+    height: 100%;
+    min-height: 475px;
+    width: 100%;
+}
+@media(max-width:1000px){
+    .scroll-area-height{
+        height: 100px;
+    }
+}
+@media(max-width:720px){
+    .manga-desc{
+        display: none;
+    }
+}
+@media (max-width:640px) {
+    .cover-image-container {
+        width: 112px;
+        height: 160px;
+        min-width: 112px;
+    }
+    .carousel-container{
+        padding: 50px 20px 50px 20px;
+        min-height: 320px;
+    }
+    .manga-title{
+        font-size: 1.25rem /* 36px */;
+        line-height: 1.5rem 
+    }
+    .manga-tags{
+        padding-left: 0.15rem; /* Decrease padding */
+    padding-right: 0.15rem; /* Decrease padding */
+    }    
+    .latest-update-container{
+        padding: 50px 20px 50px 20px;
+    }
+}
+
+@media (max-width:375px){
+    .manga-author{
+        display: none;
+    }
+}
+
