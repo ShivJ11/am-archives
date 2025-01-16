@@ -62,12 +62,12 @@ const MangaItem = ({ manga, cover }: { manga: any, cover: any }) => {
     return (
       <div className='flex gap-2' key={manga.id}>
         <div style={{ height: '80px', minWidth: '56px', maxWidth: '56px' }}>
-          <Link className='group flex items-start relative mb-auto select-none w-full h-full' href={{}}>
+          <Link className='group flex items-start relative mb-auto select-none w-full h-full' href={`/manga/${cover.id}`}>
             <img src={`https://uploads.mangadex.org/covers/${cover.id}/${fileName}`} alt="" />
           </Link>
         </div>
         <div className='flex-grow flex flex-col justify-evenly'>
-          <Link href={{}}>
+          <Link href={`/manga/${cover.id}`}>
             <h6 className='text-base font-bold line-clamp-1 break-all'>{cover.attributes.title.en}</h6>
           </Link>
           <div className='flex items-center justify-between'>
@@ -84,7 +84,7 @@ const MangaItem = ({ manga, cover }: { manga: any, cover: any }) => {
                 <span className='line-clamp-1' key={index}>{author.attributes.name}</span>
               ))
             }</div>
-            <div className='flex items-center text-sm line-clamp-1'>{formatDistanceToNow(new Date(manga.attributes.updatedAt), { addSuffix: true })}</div>
+            <div className='flex items-center text-sm  overflow-hidden text-ellipsis whitespace-nowrap line-clamp-1'>{formatDistanceToNow(new Date(manga.attributes.updatedAt), { addSuffix: true })}</div>
           </div>
         </div>
       </div>

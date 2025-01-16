@@ -12,7 +12,7 @@ import LoadingPage from '@/app/manga/loading';
 
 export function HomeCarousel() {
     const plugin = React.useRef(
-        Autoplay({ delay: 200000, stopOnInteraction: false, stopOnFocusIn: false, stopOnLastSnap: false, stopOnMouseEnter: false })
+        Autoplay({ delay: 2000, stopOnInteraction: false, stopOnFocusIn: false, stopOnLastSnap: false, stopOnMouseEnter: false })
     )
     const [mangaData, setMangaData] = useState<MangaData[] | null>(null);
     useEffect(() => {
@@ -30,7 +30,7 @@ export function HomeCarousel() {
     if (!mangaData) {
         return <LoadingPage /> // You can add a loading state here
     }
-    
+
     return (
         <div>
             <Carousel
@@ -55,7 +55,12 @@ export function HomeCarousel() {
                                                         <img src={`https://uploads.mangadex.org/covers/${manga.id}/${manga.relationships.find((item: { type: string; }) => item.type === 'cover_art').attributes.fileName}`} alt="Vertical Image" />
                                                     </div>
                                                     <div className='carousel-right-side' >
-                                                        <h1 className='font-extrabold text-gray-300 text-4xl manga-title'>{manga.attributes.title.en}</h1>
+                                                        <h1 className='font-extrabold text-gray-300 text-4xl manga-title'>{
+                                                            manga.attributes.title.en ??
+                                                            manga.attributes.altTitles?.en ??
+                                                            manga.attributes.altTitles?.find((title: { [x: string]: any; }) => title[manga.attributes.originalLanguage])?.[manga.attributes.originalLanguage] ??
+                                                            ''
+                                                        }</h1>
                                                         <div className='pt-2 opacity-100'>{manga.attributes.tags
                                                             .filter((tag: any) => tag.attributes.group === 'genre') // Filter only genre tags
                                                             .map((tag: any, index: number) => (

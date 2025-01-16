@@ -5,7 +5,7 @@
     width: 100%;
 }
 
-.carousel-image-container {    
+.carousel-image-container {
     width: 100%;
     content: "";
     position: absolute;
@@ -31,76 +31,476 @@
     width: 100%;
     object-fit: cover;
 }
-.carousel-right-side{
+
+.carousel-right-side {
     padding-left: 20px;
     position: relative;
 }
-.manga-title{
+
+.manga-title {
     filter: grayscale(1);
 }
-.manga-tags{
+
+.manga-tags {
     display: inline-flex;
     background-color: #b0e3af;
-    align-items: center;           
-    justify-content: center;  
+    align-items: center;
+    justify-content: center;
     border: 1px solid #b0e3af;
     border-radius: 5px;
     font-weight: bold;
     color: #333;
-    padding-left: 0.25rem ;
-    padding-right: 0.25rem ;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
 
 }
-.manga-author{
+
+.manga-author {
     position: absolute;
-    bottom: 0; 
-    right: 0;      
+    bottom: 0;
+    right: 0;
 }
-.scroll-area-height{
+
+.scroll-area-height {
     height: 140px;
 }
-.latest-update-container{
+
+.latest-update-container {
     padding: 30px 80px 30px 80px;
     height: 100%;
     min-height: 475px;
     width: 100%;
 }
-@media(max-width:1000px){
-    .scroll-area-height{
+
+@media(max-width:1000px) {
+    .scroll-area-height {
         height: 100px;
     }
 }
-@media(max-width:720px){
-    .manga-desc{
+
+@media(max-width:720px) {
+    .manga-desc {
         display: none;
     }
 }
+
 @media (max-width:640px) {
     .cover-image-container {
         width: 112px;
         height: 160px;
         min-width: 112px;
     }
-    .carousel-container{
+
+    .carousel-container {
         padding: 50px 20px 50px 20px;
         min-height: 320px;
     }
-    .manga-title{
-        font-size: 1.25rem /* 36px */;
-        line-height: 1.5rem 
+
+    .manga-title {
+        font-size: 1.25rem
+            /* 36px */
+        ;
+        line-height: 1.5rem
     }
-    .manga-tags{
-        padding-left: 0.15rem; /* Decrease padding */
-    padding-right: 0.15rem; /* Decrease padding */
-    }    
-    .latest-update-container{
+
+    .manga-tags {
+        padding-left: 0.15rem;
+        /* Decrease padding */
+        padding-right: 0.15rem;
+        /* Decrease padding */
+    }
+
+    .latest-update-container {
         padding: 50px 20px 50px 20px;
     }
 }
 
-@media (max-width:375px){
-    .manga-author{
+@media (max-width:375px) {
+    .manga-author {
         display: none;
     }
 }
 
+/* manga details page */
+.cover-image {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center center;
+    filter: blur(20px);
+    opacity: .25;
+}
+
+.detail-page-image {
+    height: 270px;
+}
+
+.hd-box {
+    display: inline-flex;
+    background-color: rgb(140, 180, 230);
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(140, 180, 230);
+    border-radius: 5px;
+    font-weight: bold;
+    color: #333;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+
+.pg-box {
+    display: inline-flex;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #333;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+
+.episode-box {
+    display: inline-flex;
+    background-color: #b0e3af;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #b0e3af;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #333;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+
+.pink-box {
+    display: inline-flex;
+    background-color: #ffbade;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ffbade;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #333;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+
+.border-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid;
+    border-radius: 5px;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+
+.dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .3);
+    display: inline-block;
+    margin: 10px 10px;
+}
+
+.dot-center {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .3);
+    display: inline-block;
+    margin: 9px 10px;
+}
+
+@media (min-width:1200px) {
+    .detail-page-first-section {
+        width: 20%;
+    }
+
+    .detail-page-mid-section {
+        /* padding-left: 70px; */
+        width: 50%;
+    }
+
+    .detail-page-last-section {
+        padding-left: 70px;
+        width: 30%
+    }
+}
+
+@media (max-width:900px) and (min-width:650px) {
+    .detail-page-first-section {
+        width: 35% !important;
+    }
+}
+
+@media (max-width:1200px) {
+    .detail-page-first-section {
+        width: 25%;
+        display: flex;
+        /* Horizontal centering */
+        align-items: center;
+    }
+
+    .detail-page-mid-section {
+        width: 65%;
+    }
+
+    .detail-page-last-section {
+        padding-top: 10px;
+        width: 100%;
+    }
+
+    .detail-page-last-section-separator {
+        display: none;
+    }
+
+}
+
+@media (max-width: 650px) {
+    .detail-page-image {
+        height: 207px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        margin: auto;
+    }
+
+    .detail-page-first-section {
+        width: 100%;
+    }
+
+    .detail-page-mid-section {
+        padding-top: 10px;
+        width: 100%;
+    }
+
+    .detail-page-last-section {
+        padding-top: 10px;
+        width: 100%;
+    }
+
+    .pg-box {
+        display: none;
+    }
+}
+
+/* manga chapter scroll area */
+.chapter-label::before {
+    content: ' Chapter: ';
+}
+
+.chapter-header {
+    cursor: pointer;
+    display: grid;
+    font-size: .75rem;
+    grid-template-columns: 1fr auto min-content;
+    line-height: 1rem;
+    padding: .25rem .5rem;
+}
+
+.two-line {
+    font-size: .875rem;
+    line-height: 1.25rem;
+}
+
+.langs-holder {
+    align-items: center;
+    display: flex;
+    gap: .125rem;
+    margin-left: .25rem;
+    min-width: 0;
+    overflow-x: auto;
+    transition-duration: .15s;
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+}
+
+.chapter:not(:last-child) {
+    border-bottom: 1px solid;
+    border-color: rgb(var(--md-accent-10));
+}
+
+.chapter {
+    transition: background-color .1s ease-out;
+}
+
+.chapter-line {
+    display: flex;
+    padding-bottom: .125rem;
+    padding-left: .625rem;
+    padding-top: .125rem;
+}
+
+.chapter-line.twoLine {
+    padding-bottom: .25rem;
+    padding-left: .75rem;
+    padding-top: .25rem;
+}
+
+.chapter-line-top {
+    background-color: rgb(209, 213, 219);
+    border-top-left-radius: .0625rem;
+    border-top-right-radius: .0625rem;
+    height: .75rem;
+    width: .125rem;
+}
+
+.chapter-line-top.twoLine {
+    border-top-left-radius: .125rem;
+    border-top-right-radius: .125rem;
+    margin-left: .125rem;
+    width: .25rem;
+}
+
+.chapter-line-top {
+    transform: translateZ(0);
+}
+
+.chapter-line-bottom.twoLine {
+    border-bottom-left-radius: .125rem;
+    border-bottom-right-radius: .125rem;
+    margin-left: -.25rem;
+    width: .25rem;
+}
+
+.chapter-line-bottom {
+    height: calc(100% - .75rem);
+}
+
+.chapter-line-bottom {
+    background-color: rgb(209, 213, 219);
+    border-bottom-left-radius: .0625rem;
+    border-bottom-right-radius: .0625rem;
+    margin-left: -.125rem;
+    margin-top: .75rem;
+    width: .125rem;
+}
+
+.chapter-line-bottom {
+    transform: translateZ(0);
+}
+
+.chapter-line-extend {
+    transform: translateZ(0);
+}
+
+.chapter-line-extend.twoLine {
+    border-bottom-right-radius: .125rem;
+    border-top-right-radius: .125rem;
+    height: .25rem;
+    margin-top: .5rem;
+}
+
+.chapter-line-extend {
+    background-color: rgb(209, 213, 219);
+    border-bottom-right-radius: .0625rem;
+    border-top-right-radius: .0625rem;
+    height: .125rem;
+    margin-top: .625rem;
+    width: .5rem;
+}
+
+.chapter-grid {
+    grid-template-areas:
+        "title-views"
+        "group-comments"
+        "uploader-timestamp";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+}
+
+@media (min-width: 40rem) {
+    .chapter-line {
+        padding-left: .875rem;
+    }
+
+    .chapter-line-extend {
+        width: .625rem;
+    }
+
+    .chapter-grid {
+        grid-template-areas:
+            "title timestamp views"
+            "groups uploader comments";
+        grid-template-columns: auto 124px 50px;
+        grid-template-rows: auto auto;
+    }
+
+    .user-tag[data-v-514756c3] {
+        overflow-wrap: normal;
+        word-break: normal;
+    }
+}
+
+@media (min-width: 48rem) {
+    .chapter-grid {
+        grid-template-columns: auto 150px 60px;
+        grid-template-rows: auto auto;
+        font-size: .875rem;
+        line-height: 1.25rem;
+    }
+}
+
+@media (max-width: 425px) {
+    .chapter-label::before {
+        content: ' Ch: ';
+    }
+}
+
+.chapter-grid {
+    -moz-column-gap: .5rem;
+    column-gap: .5rem;
+    cursor: pointer;
+    display: grid;
+    font-size: .75rem;
+    line-height: 1rem;
+    padding: .25rem .5rem;
+    row-gap: .25rem;
+}
+
+.comment-container.hover {
+    margin-bottom: -.125rem;
+    margin-left: -.25rem;
+    margin-top: -.125rem;
+    padding: .125rem .25rem;
+    transition: background-color 75ms ease-in-out;
+}
+
+.comment-container {
+    align-items: center;
+    border-radius: .25rem;
+    cursor: pointer;
+    display: flex;
+    gap: .25rem;
+    white-space: nowrap;
+}
+
+.user-tag {
+    align-items: center;
+    display: flex;
+    word-break: break-all;
+}
+
+.arrow-icon {
+    align-items: center;
+    display: inline-flex;
+    flex-shrink: 0;
+    height: 1.5rem;
+    justify-content: center;
+    line-height: 1;
+    text-indent: 0;
+    transition: color .3s cubic-bezier(.25, .8, .5, 1);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    width: 1.5rem;
+}

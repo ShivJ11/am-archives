@@ -121,12 +121,6 @@
 .detail-page-image{
     height: 270px;
 }
-.detail-page-mid-section{
-
-}
-.detail-page-last-section{
-
-}
 @media (min-width:1200px) {
     .detail-page-first-section{
         width: 20%;

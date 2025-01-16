@@ -1,5 +1,5 @@
 export function getPopularNewTitles() {
-    const url = 'https://api.mangadex.org/manga?includes[]=cover_art&includes[]=artist&includes[]=author&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&hasAvailableChapters=true&createdAtSince=2024-12-06T18%3A30%3A00';
+    const url = 'https://api.mangadex.org/manga?includes[]=cover_art&includes[]=artist&includes[]=author&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&hasAvailableChapters=true';
     const options = {
         method: 'GET',
         headers: {
@@ -36,7 +36,7 @@ export function getLatestMangaCovers() {
     return fetch(url, options)
         .then(mangaCovers)
 }
-export function getLatestMangaCoverImageDetails(id:string){
+export function getLatestMangaCoverImageDetails(id: string) {
     const url = `https://api.mangadex.org/manga?${id}&limit=100&includes[]=author&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&contentRating[]=pornographic&includes[]=cover_art`;
     const options = {
         method: 'GET',
@@ -71,6 +71,31 @@ function mangaCovers(response: { json: () => Promise<any>; ok: any }) {
     });
 }
 
+export function getMangaDetailsById(id: string, router: any) {
+    const url = `https://api.mangadex.org/manga/${id}?includes[]=artist&includes[]=author&includes[]=cover_art`
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+    }
+    return fetch(url, options)
+        .then(handleMangaResponse);
+
+    function handleMangaResponse(response: { json: () => Promise<any>; ok: any }) {
+        return response.json().then(function (json) {
+            if (!response.ok) {
+                console.error('API response not OK', json);
+                router.push('/404');
+                return;
+            }
+            console.log(json);
+            return json;
+        });
+    }
+}
+
 function handleResponse(response: { json: () => Promise<any>; ok: any }) {
     return response.json().then(function (json) {
         if (!response.ok) {
@@ -82,3 +107,18 @@ function handleResponse(response: { json: () => Promise<any>; ok: any }) {
     });
 }
 
+export function getMangaChaptersList(mangaId:string,offset?:number){
+    if(!offset){
+        offset=0;
+    }
+    const url = `https://api.mangadex.org/manga/${mangaId}/feed?limit=96&includes[]=scanlation_group&includes[]=user&order[volume]=asc&order[chapter]=asc&offset=${offset}&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica`;
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+    }
+    return fetch(url, options)
+        .then(handleResponse);
+}

@@ -33,18 +33,13 @@ export interface MangaAttributes {
     title: {
         en: string;
     };
-    altTitles: {
-        vi?: string;
-        en?: string;
-        ja?: string;
-        "ja-ro"?: string;
-    }[];
+    altTitles: AltTitles[];
     description: {
         en: string;
     };
     isLocked: boolean;
     links: MangaLinks;
-    originalLanguage: string;
+    originalLanguage: keyof AltTitles;
     lastVolume: string;
     lastChapter: string;
     publicationDemographic: string;
@@ -58,12 +53,26 @@ export interface MangaAttributes {
     version: number;
     availableTranslatedLanguages: string[];
     latestUploadedChapter: string;
+    state:string;
 }
-
+export interface AltTitles{
+    vi?: string;
+    en?: string;
+    ja?: string;
+    "ja-ro"?: string;
+    ru?:string;
+    "zh-hk":string;
+    ko?:string;
+    th?:string;
+    el?:string;
+    de?:string;
+    "es-la"?:string;
+}
 export interface MangaRelationship {
     id: string;
     type: string;
     attributes: {
+        name:string,
         description: string,
         volume: string,
         fileName: string,
@@ -76,9 +85,46 @@ export interface MangaRelationship {
 
 export interface MangaData {
     id: string;
-    type: "manga";
+    type: string;
     attributes: MangaAttributes;
     relationships: MangaRelationship[];
 }
 
 export type MangaResponse = MangaData[];
+
+interface MangaFeedAttributes{
+    volume:string;
+    chapter:string;
+    title:string;
+    translatedLanguage:string;
+    externalUrl:string;
+    publishAt:string;
+    readableAt:string;
+    createdAt:string;
+    updatedAt:string;
+    pages:number;
+    version:number;
+}
+
+interface MangaFeedRelationships{
+    id: string;
+    type: string;
+    attributes: {
+        name:string,
+        altNames: string[],
+        locked: boolean,
+        website: string,
+        focusedLanguages: string[],
+        official: boolean,
+        createdAt:string,
+        updatedAt: string,
+        version: number
+    }
+}
+
+export interface MangaFeedData{
+    id:string;
+    type:string;
+    attributes: MangaFeedAttributes;
+    relationships:MangaFeedRelationships[];
+}
