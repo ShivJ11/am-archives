@@ -293,6 +293,15 @@
     }
 }
 
+@media (max-width:400px) {
+    .manga-chapter-root {
+        padding-left: 1rem
+            /* 16px */
+        ;
+        padding-right: 1rem
+    }
+}
+
 /* manga chapter scroll area */
 .chapter-label::before {
     content: ' Chapter: ';
@@ -411,11 +420,17 @@
 
 .chapter-grid {
     grid-template-areas:
-        "title-views"
-        "group-comments"
-        "uploader-timestamp";
+        "title views"
+        "groups comments"
+        "uploader timestamp";
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
+}
+
+.chapter-grid>div:nth-child(2),
+.chapter-grid>div:nth-child(4),
+.chapter-grid>div:nth-child(6) {
+    justify-self: end;
 }
 
 @media (min-width: 40rem) {
@@ -433,6 +448,12 @@
             "groups uploader comments";
         grid-template-columns: auto 124px 50px;
         grid-template-rows: auto auto;
+    }
+
+    .chapter-grid>div:nth-child(2),
+    .chapter-grid>div:nth-child(4),
+    .chapter-grid>div:nth-child(6) {
+        justify-self: start;
     }
 
     .user-tag[data-v-514756c3] {

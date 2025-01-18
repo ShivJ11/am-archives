@@ -39,3 +39,14 @@ export function formatDate(dateString:string){
 
   return `${day} ${month}, ${year}`;
 }
+
+export function processLanguageCode(input: string): string {  
+  const hyphenIndex = input.indexOf('-');
+  if (hyphenIndex !== -1) {
+    return input.slice(hyphenIndex + 1);
+  }
+  if(input==="en"){
+    return "gb"
+  }
+  return input;
+}

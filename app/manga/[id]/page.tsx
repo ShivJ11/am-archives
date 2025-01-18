@@ -10,6 +10,7 @@ import React from 'react'
 import '../../components/manga/manga.css'
 import { capitalizeFirstLetter, formatDate } from '@/lib/helper';
 import MangaChaptersScrollArea from '@/app/components/manga/mangaChaptersScrollArea';
+import LoadingChaptersScrollArea from '@/app/components/manga/loadingChaptersScrollArea';
 
 const MangaDetails = () => {
     const pathname = usePathname();
@@ -38,7 +39,7 @@ const MangaDetails = () => {
     }, [mangaId, router]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div><LoadingChaptersScrollArea/></div>;
     }
 
     if (!manga) {
