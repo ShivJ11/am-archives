@@ -5,11 +5,15 @@ import React from 'react'
 import LoadingChaptersScrollArea from './loadingChaptersScrollArea';
 import { processLanguageCode } from '@/lib/helper';
 import { formatDistanceToNow } from 'date-fns';
+import MangaChapterListPagination from './mangaChapterListPagination';
 
 const MangaChaptersScrollArea = ({ id }: { id: string }) => {
   const [mangaChapters, setMangaChapters] = React.useState<MangaFeedData[] | null>(null);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [isChapterVisible, setIsChapterVisible] = React.useState({});
+  const [currentPage, setCurrentPage] = React.useState(1); 
+  const [totalChapters, setTotalChapters]=React.useState<number>();
+  const itemsPerPage = 96; 
   const toggleVisibility = (chapterId: string | number) => {
     setIsChapterVisible((prevState: { [x: string]: any; }) => ({
       ...prevState,
@@ -22,9 +26,12 @@ const MangaChaptersScrollArea = ({ id }: { id: string }) => {
   React.useEffect(() => {
     async function fetchMangaChapters() {
       try {
-        const data = await getMangaChaptersList(id);
+        setLoading(true);
+        const offset = (currentPage - 1) * itemsPerPage ;
+        const data = await getMangaChaptersList(id,offset+1);
         if (data) {
           setMangaChapters(data.data);
+          setTotalChapters(data.total);
         } else {
           console.error('Invalid data structure', data);
         }
@@ -35,7 +42,7 @@ const MangaChaptersScrollArea = ({ id }: { id: string }) => {
       }
     }
     fetchMangaChapters();
-  }, [id])
+  }, [id,currentPage])
   if (loading) {
     return <LoadingChaptersScrollArea />
   }
@@ -73,6 +80,7 @@ const MangaChaptersScrollArea = ({ id }: { id: string }) => {
           })) : (<div></div>)}
           <div className='flex justify-center flex-wrap gap-2 mt-6'>
             {/* pagination */}
+            <MangaChapterListPagination currentPage={currentPage} onPageChange={setCurrentPage} totalChapters={totalChapters}/>
           </div>
         </div>
       </div>
