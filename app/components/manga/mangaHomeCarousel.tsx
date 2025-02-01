@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import './manga.css'
 import { ScrollArea } from '@/components/ui/scroll-area';
 import LoadingPage from '@/app/manga/loading';
+import Link from 'next/link';
 
 export function HomeCarousel() {
     const plugin = React.useRef(
@@ -51,16 +52,16 @@ export function HomeCarousel() {
                                                     <img style={{ position: "absolute", opacity: 0.10, width: '100%' }} src={`https://uploads.mangadex.org/covers/${manga.id}/${manga.relationships.find((item: { type: string; }) => item.type === 'cover_art').attributes.fileName}`} alt="" />
                                                 </div>
                                                 <div className='flex z-40'>
-                                                    <div className="cover-image-container" >
+                                                    <Link href={`/manga/${manga.id}`} className="cover-image-container" >
                                                         <img src={`https://uploads.mangadex.org/covers/${manga.id}/${manga.relationships.find((item: { type: string; }) => item.type === 'cover_art').attributes.fileName}`} alt="Vertical Image" />
-                                                    </div>
+                                                    </Link>
                                                     <div className='carousel-right-side' >
-                                                        <h1 className='font-extrabold text-gray-300 text-4xl manga-title'>{
+                                                        <Link href={`/manga/${manga.id}`} className='font-extrabold text-gray-300 text-4xl manga-title'>{
                                                             manga.attributes.title.en ??
                                                             manga.attributes.altTitles?.en ??
                                                             manga.attributes.altTitles?.find((title: { [x: string]: any; }) => title[manga.attributes.originalLanguage])?.[manga.attributes.originalLanguage] ??
                                                             ''
-                                                        }</h1>
+                                                        }</Link>
                                                         <div className='pt-2 opacity-100'>{manga.attributes.tags
                                                             .filter((tag: any) => tag.attributes.group === 'genre') // Filter only genre tags
                                                             .map((tag: any, index: number) => (

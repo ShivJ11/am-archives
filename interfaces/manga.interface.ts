@@ -53,33 +53,36 @@ export interface MangaAttributes {
     version: number;
     availableTranslatedLanguages: string[];
     latestUploadedChapter: string;
-    state:string;
+    state: string;
 }
-export interface AltTitles{
+export interface AltTitles {
     vi?: string;
     en?: string;
     ja?: string;
     "ja-ro"?: string;
-    ru?:string;
-    "zh-hk":string;
-    ko?:string;
-    th?:string;
-    el?:string;
-    de?:string;
-    "es-la"?:string;
+    ru?: string;
+    "zh-hk": string;
+    ko?: string;
+    th?: string;
+    el?: string;
+    de?: string;
+    "es-la"?: string;
 }
 export interface MangaRelationship {
     id: string;
     type: string;
     attributes: {
-        name:string,
+        name: string,
         description: string,
         volume: string,
         fileName: string,
         locale: string,
         createdAt: string,
         updatedAt: string,
-        version: string
+        version: string,
+        title: {
+            en: string;
+        };
     }
 }
 
@@ -92,39 +95,41 @@ export interface MangaData {
 
 export type MangaResponse = MangaData[];
 
-interface MangaFeedAttributes{
-    volume:string;
-    chapter:string;
-    title:string;
-    translatedLanguage:string;
-    externalUrl:string;
-    publishAt:string;
-    readableAt:string;
-    createdAt:string;
-    updatedAt:string;
-    pages:number;
-    version:number;
+interface MangaFeedAttributes {
+    volume: string;
+    chapter: string;
+    title: string;
+    translatedLanguage: string;
+    externalUrl: string;
+    publishAt: string;
+    readableAt: string;
+    createdAt: string;
+    updatedAt: string;
+    pages: number;
+    version: number;
 }
 
-interface MangaFeedRelationships{
+interface MangaFeedRelationships {
     id: string;
     type: string;
-    attributes: {
-        name:string,
-        altNames: string[],
-        locked: boolean,
-        website: string,
-        focusedLanguages: string[],
-        official: boolean,
-        createdAt:string,
-        updatedAt: string,
-        version: number
-    }
+    attributes: ScanlationGroupAttributes
 }
 
-export interface MangaFeedData{
-    id:string;
-    type:string;
+export interface MangaFeedData {
+    id: string;
+    type: string;
     attributes: MangaFeedAttributes;
-    relationships:MangaFeedRelationships[];
+    relationships: MangaFeedRelationships[];
+}
+
+export interface ScanlationGroupAttributes {
+    name: string,
+    altNames: string[],
+    locked: boolean,
+    website: string,
+    focusedLanguages: string[],
+    official: boolean,
+    createdAt: string,
+    updatedAt: string,
+    version: number
 }

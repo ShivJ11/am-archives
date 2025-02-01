@@ -1,3 +1,6 @@
+import { ChapterDetailsRelationships } from "@/interfaces/chapter.interface";
+import { MangaAttributes, ScanlationGroupAttributes } from "@/interfaces/manga.interface";
+
 export function truncateDescription (description: string |undefined, maxLength: number){
   if (!description) {
     return ""; 
@@ -45,8 +48,19 @@ export function processLanguageCode(input: string): string {
   if (hyphenIndex !== -1) {
     return input.slice(hyphenIndex + 1);
   }
+  if(input==="hi"){
+    return "in"
+  }
   if(input==="en"){
     return "gb"
   }
   return input;
+}
+
+export function isMangaAttributes(relationship: ChapterDetailsRelationships): relationship is { id:string; type: 'manga'; attributes: MangaAttributes } {
+  return relationship.type === 'manga';
+}
+
+export function isScanlationGroupAttributes(relationship: ChapterDetailsRelationships): relationship is { id:string; type: 'scanlation_group'; attributes: ScanlationGroupAttributes } {
+  return relationship.type === 'scanlation_group';
 }

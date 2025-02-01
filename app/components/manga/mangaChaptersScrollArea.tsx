@@ -11,9 +11,9 @@ const MangaChaptersScrollArea = ({ id }: { id: string }) => {
   const [mangaChapters, setMangaChapters] = React.useState<MangaFeedData[] | null>(null);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [isChapterVisible, setIsChapterVisible] = React.useState({});
-  const [currentPage, setCurrentPage] = React.useState(1); 
-  const [totalChapters, setTotalChapters]=React.useState<number>();
-  const itemsPerPage = 96; 
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [totalChapters, setTotalChapters] = React.useState<number>();
+  const itemsPerPage = 96;
   const toggleVisibility = (chapterId: string | number) => {
     setIsChapterVisible((prevState: { [x: string]: any; }) => ({
       ...prevState,
@@ -27,8 +27,8 @@ const MangaChaptersScrollArea = ({ id }: { id: string }) => {
     async function fetchMangaChapters() {
       try {
         setLoading(true);
-        const offset = (currentPage - 1) * itemsPerPage ;
-        const data = await getMangaChaptersList(id,offset+1);
+        const offset = (currentPage - 1) * itemsPerPage;
+        const data = await getMangaChaptersList(id, offset + 1);
         if (data) {
           setMangaChapters(data.data);
           setTotalChapters(data.total);
@@ -42,7 +42,7 @@ const MangaChaptersScrollArea = ({ id }: { id: string }) => {
       }
     }
     fetchMangaChapters();
-  }, [id,currentPage])
+  }, [id, currentPage])
   if (loading) {
     return <LoadingChaptersScrollArea />
   }
@@ -80,7 +80,7 @@ const MangaChaptersScrollArea = ({ id }: { id: string }) => {
           })) : (<div></div>)}
           <div className='flex justify-center flex-wrap gap-2 mt-6'>
             {/* pagination */}
-            <MangaChapterListPagination currentPage={currentPage} onPageChange={setCurrentPage} totalChapters={totalChapters}/>
+            <MangaChapterListPagination currentPage={currentPage} onPageChange={setCurrentPage} totalChapters={totalChapters} />
           </div>
         </div>
       </div>
@@ -112,22 +112,24 @@ const VolumeContent = ({ manga, toggleVisibility, isChapterVisible, lastChapterM
 const ChapterContent = ({ manga, toggleVisibility, isChapterVisible }: { manga: any, toggleVisibility: any, isChapterVisible: any }) => {
   const handleSvgClick = (e: { target: any; }) => {
     // Directly toggle rotation on the SVG element
-    const svgElement = e.target;
-    svgElement.style.transform = svgElement.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
-    svgElement.style.transition = 'transform 0.3s ease';
+    const svgElement = document.getElementById(`svg-${manga.attributes.chapter}`) as unknown as SVGSVGElement;
+    if (svgElement) {
+      svgElement.style.transform = svgElement.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
+      svgElement.style.transition = 'transform 0.3s ease';
+    }
     toggleVisibility(manga.attributes.chapter);
   };
   return (
     <div className='rounded flex flex-col gap-2 h-auto mt-2'>
       <div className='rounded-sm' style={{ backgroundColor: 'rgb(75 85 99 )' }}>
-        <div className='chapter-header two-line'>
+        <div className='chapter-header two-line' onClick={handleSvgClick}>
           <div className='flex'>
             <span className='font-bold self-center whitespace-nowrap'>
               {/* Chapter 1 */}
               Chapter {manga.attributes.chapter}
             </span>
           </div>
-          <svg xmlns="http://www.w3.org/2000/svg" onClick={handleSvgClick} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6" style={{ transition: "transform 150ms ease-in-out", transform: "rotate(180deg)" }}>
+          <svg xmlns="http://www.w3.org/2000/svg" id={`svg-${manga.attributes.chapter}`} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6" style={{ transition: "transform 150ms ease-in-out", transform: "rotate(180deg)" }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
             {/* chapter chevron */}
           </svg>
@@ -166,13 +168,18 @@ const UploaderContent = (manga: { manga: any }) => {
         <div className='chapter-line-bottom twoLine'></div>
         <div className='chapter-line-extend twoLine'></div>
       </div>
-      <Link href={`/manga`} className='chapter-grid flex-grow'>               
+      <Link href={manga.manga.attributes.externalUrl ?? `/chapter/${manga.manga.id}`}target={manga.manga.attributes.externalUrl ?'_blank':'_self'} className='chapter-grid flex-grow'>
         <div className='flex flex-grow items-center' style={{ gridArea: "title" }}>
           {/* flag image */}
           <img src={`https://mangadex.org/img/flags/${processLanguageCode(manga.manga.attributes.translatedLanguage)}.svg`} onError={(e) => { (e.target as HTMLImageElement).src = 'https://mangadex.org/img/flags/gb.svg'; }} alt="" className='inline-block select-none flex-shrink-0 !h-5 !w-5 ' />
-          <span className='chapter-link ml-1 font-bold my-auto flex items-center space-x-1'><span className='line-clamp-1 px-1'>
-            {/* chapter name */}
-            {manga.manga.attributes.title ?? "No title"}
+          {manga.manga.attributes.externalUrl? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5 ml-1">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+            </svg>:''}
+          <span className='chapter-link ml-1 font-bold my-auto flex items-center space-x-1'>            
+            <span className='line-clamp-1 px-1'>
+            {(manga.manga.attributes.title && manga.manga.attributes.title !== "")
+              ? manga.manga.attributes.title
+              : `Ch.${manga.manga.attributes.chapter}`}
           </span></span>
         </div>
         <div className='comment-container hover justify-self-start' style={{ gridArea: "comments" }}>
@@ -219,7 +226,7 @@ const UploaderContent = (manga: { manga: any }) => {
             {formatDistanceToNow(manga.manga.attributes.updatedAt) ?? ""}
           </div>
         </div>
-        
+
       </Link>
     </div>
   )
