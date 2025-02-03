@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react'
-import { SearchBar } from '../root/seachBar';
+import { SearchBar } from '../root/searchBar';
 
 const AnimeHeader = () => {
     return (

@@ -11,6 +11,7 @@ import '../../components/manga/manga.css'
 import { capitalizeFirstLetter, formatDate } from '@/lib/helper';
 import MangaChaptersScrollArea from '@/app/components/manga/mangaChaptersScrollArea';
 import LoadingChaptersScrollArea from '@/app/components/manga/loadingChaptersScrollArea';
+import Head from 'next/head';
 
 const MangaDetails = () => {
     const pathname = usePathname();
@@ -39,7 +40,7 @@ const MangaDetails = () => {
     }, [mangaId, router]);
 
     if (loading) {
-        return <div><LoadingChaptersScrollArea/></div>;
+        return <div><LoadingChaptersScrollArea /></div>;
     }
 
     if (!manga) {
@@ -49,58 +50,64 @@ const MangaDetails = () => {
     const imageUrl = coverImage ? `https://uploads.mangadex.org/covers/${manga.id}/${coverImage}` : 'default-image-url';
 
     return (
-        <div>
-            <MangaHeader />
-            <div className="flex flex-wrap pt-16 pb-8 px-10 " >
-                <div className='cover-image' style={{ backgroundImage: `url('${imageUrl}')` }}></div>
-                <div className="detail-page-first-section">
-                    <img src={imageUrl} alt={manga.attributes.title.en} className='detail-page-image' />
-                </div>
-                <div className="text-gray-300 detail-page-mid-section">
-                    <div className='flex'>
-                        <Link href={'/'}>Home</Link>
-                        {manga.attributes.publicationDemographic && (
-                            <>
-                                <div className='dot-center'></div>
-                                <div>{capitalizeFirstLetter(manga.attributes.publicationDemographic)}</div>
-                            </>
-                        )}
-                        <div className='dot-center'></div>
-                        <div className='line-clamp-1'>{manga.attributes.altTitles?.find((title) => title[manga.attributes.originalLanguage])?.[manga.attributes.originalLanguage] ?? ''}
+        <>
+            <Head>
+                <title>{`${manga.attributes.title.en} - am Archives`}</title>
+                <meta name="description" content={`Read the latest chapter of ${manga.attributes.title.en}`} />
+            </Head>
+            <div>
+                <MangaHeader />
+                <div className="flex flex-wrap pt-16 pb-8 px-10 " >
+                    <div className='cover-image' style={{ backgroundImage: `url('${imageUrl}')` }}></div>
+                    <div className="detail-page-first-section">
+                        <img src={imageUrl} alt={manga.attributes.title.en} className='detail-page-image' />
+                    </div>
+                    <div className="text-gray-300 detail-page-mid-section">
+                        <div className='flex'>
+                            <Link href={'/'}>Home</Link>
+                            {manga.attributes.publicationDemographic && (
+                                <>
+                                    <div className='dot-center'></div>
+                                    <div>{capitalizeFirstLetter(manga.attributes.publicationDemographic)}</div>
+                                </>
+                            )}
+                            <div className='dot-center'></div>
+                            <div className='line-clamp-1'>{manga.attributes.altTitles?.find((title) => title[manga.attributes.originalLanguage])?.[manga.attributes.originalLanguage] ?? ''}
+                            </div>
+                        </div>
+                        <h1 className='text-4xl pt-4 font-bold line-clamp-3'>{manga.attributes.title.en}</h1>
+                        <div className='flex pt-4'>
+                            <div className='pg-box mr-2'>{manga.attributes.contentRating === "safe" || "suggestive" ? "PG-13" : "18+"}</div>
+                            <div className='hd-box mr-2'>HD</div>
+                            <div className='pink-box mr-2'>{manga.attributes.status}</div>
+                            <div className='episode-box'>{manga.type}</div>
+                            <div className='dot'></div>
+                            <div>{manga.attributes.year}</div>
+                        </div>
+                        <div className='pt-4'>
+                            <ScrollArea className="h-[150px] rounded-md ">{manga.attributes.description.en}</ScrollArea>
                         </div>
                     </div>
-                    <h1 className='text-4xl pt-4 font-bold line-clamp-3'>{manga.attributes.title.en}</h1>
-                    <div className='flex pt-4'>
-                        <div className='pg-box mr-2'>{manga.attributes.contentRating === "safe" || "suggestive" ? "PG-13" : "18+"}</div>
-                        <div className='hd-box mr-2'>HD</div>
-                        <div className='pink-box mr-2'>{manga.attributes.status}</div>
-                        <div className='episode-box'>{manga.type}</div>
-                        <div className='dot'></div>
-                        <div>{manga.attributes.year}</div>
-                    </div>
-                    <div className='pt-4'>
-                        <ScrollArea className="h-[150px] rounded-md ">{manga.attributes.description.en}</ScrollArea>
+                    <div className="text-gray-300 detail-page-last-section">
+                        <div><span className='font-extrabold'>Native name: </span>{manga.attributes.altTitles?.find((title) => title[manga.attributes.originalLanguage])?.[manga.attributes.originalLanguage] ?? ''}</div>
+                        <div className='pt-1'><span className='font-extrabold'>Created At: </span>{formatDate(manga.attributes.createdAt)}</div>
+                        <div className='pt-1'><span className='font-extrabold'>State: </span>{manga.attributes.state}</div>
+                        <div className='pt-1'><span className='font-extrabold'>Status: </span>{manga.attributes.status}</div>
+                        <div className='pt-1'><span className='font-extrabold'>MAL Score: </span>rating to be added</div>
+                        <div className='pt-3 pb-2 detail-page-last-section-separator'><Separator /></div>
+                        <div className=''><span className='font-extrabold'>Genres: </span>
+                            {manga.attributes.tags?.map((genre) => (
+                                <span className='border-box mr-2 mt-1' key={genre.id || genre.attributes.name.en}>{genre.attributes.name.en}</span>
+                            ))}
+                        </div>
+                        <div className='pt-3 pb-2 detail-page-last-section-separator'><Separator /></div>
+                        <div className='pt-1'><span className='font-extrabold'>Author: </span>{manga.relationships?.find((item) => item.type === 'author')?.attributes.name ?? 'Unknown'}</div>
+                        <div className='pt-1'><span className='font-extrabold'>Artist: </span>{manga.relationships?.find((item) => item.type === 'artist')?.attributes.name ?? 'Unknown'}</div>
                     </div>
                 </div>
-                <div className="text-gray-300 detail-page-last-section">
-                    <div><span className='font-extrabold'>Native name: </span>{manga.attributes.altTitles?.find((title) => title[manga.attributes.originalLanguage])?.[manga.attributes.originalLanguage] ?? ''}</div>
-                    <div className='pt-1'><span className='font-extrabold'>Created At: </span>{formatDate(manga.attributes.createdAt)}</div>
-                    <div className='pt-1'><span className='font-extrabold'>State: </span>{manga.attributes.state}</div>
-                    <div className='pt-1'><span className='font-extrabold'>Status: </span>{manga.attributes.status}</div>
-                    <div className='pt-1'><span className='font-extrabold'>MAL Score: </span>rating to be added</div>
-                    <div className='pt-3 pb-2 detail-page-last-section-separator'><Separator /></div>
-                    <div className=''><span className='font-extrabold'>Genres: </span>
-                        {manga.attributes.tags?.map((genre) => (
-                            <span className='border-box mr-2 mt-1' key={genre.id || genre.attributes.name.en}>{genre.attributes.name.en}</span>
-                        ))}
-                    </div>
-                    <div className='pt-3 pb-2 detail-page-last-section-separator'><Separator /></div>
-                    <div className='pt-1'><span className='font-extrabold'>Author: </span>{manga.relationships?.find((item) => item.type === 'author')?.attributes.name ?? 'Unknown'}</div>
-                    <div className='pt-1'><span className='font-extrabold'>Artist: </span>{manga.relationships?.find((item) => item.type === 'artist')?.attributes.name ?? 'Unknown'}</div>
-                </div>
+                <MangaChaptersScrollArea id={mangaId} />
             </div>
-            <MangaChaptersScrollArea id={mangaId}/>
-        </div>
+        </>
     );
 }
 export default MangaDetails;

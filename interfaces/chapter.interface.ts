@@ -36,3 +36,20 @@ export type ChapterDetailsRelationships=
 | { id:string; type: 'scanlation_group'; attributes: ScanlationGroupAttributes }
 | { id:string; type: 'manga'; attributes: MangaAttributes };
 
+interface Chapter {
+    chapter: string;
+    id: string;
+    others: string[];
+    count: number;
+  }
+  
+  interface Volume {
+    volume: string;
+    count: number;
+    chapters: Record<string, Chapter>;
+  }
+  
+  export interface AggregateChapterData {
+    result: string;
+    volumes: Record<string, Volume>;
+  }

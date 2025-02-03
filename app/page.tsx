@@ -1,5 +1,5 @@
 import BaseHeader from "./components/layout/baseHeader";
-import { SearchBar } from "./components/root/seachBar";
+import { SearchBar } from "./components/root/searchBar";
 import { SearchAnimeButton } from "./components/root/searchanime";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
         </div>
         <div style={{zIndex:100, position:"relative", maxWidth:"500px"}}>
           <h1 className="text-gray-300 text-6xl mb-2">am Archives</h1>
-          <SearchBar/>
+          <SearchBar name={""}/>
           <div className="pt-4 text-white">
             <p>Top search:Blue Lock, Solo Leveling, Dandadan, Blue Lock Season 2, One Piece, Shangri-La Frontier Season 2, Dragon Ball Dai , Tower of God Season 2: Workshop Battle, Frieren: Beyond Journey's End....
             </p>

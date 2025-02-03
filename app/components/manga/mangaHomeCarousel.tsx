@@ -4,7 +4,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { MangaData } from '@/interfaces/manga.interface';
 import { getPopularNewTitles } from '@/services/getMangaData'
 import Autoplay from 'embla-carousel-autoplay';
-import React, { Suspense } from 'react';
+import React from 'react';
 import { useEffect, useState } from 'react';
 import './manga.css'
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -17,6 +17,7 @@ export function HomeCarousel() {
     )
     const [mangaData, setMangaData] = useState<MangaData[] | null>(null);
     useEffect(() => {
+        console.log('useEffect in HomeCarousel running');
         async function fetchLatestManga() {
             try {
                 const result = await getPopularNewTitles();
@@ -72,7 +73,7 @@ export function HomeCarousel() {
                                                                 {manga.attributes.description.en}
                                                             </ScrollArea>
                                                         </div>
-                                                        <p className='manga-author'>{manga.relationships
+                                                        <p className='manga-author pl-5 line-clamp-1'>{manga.relationships
                                                             .filter((author: any) => author.type === 'author')
                                                             .map((author: any, index: number) => (
                                                                 <span className='text-gray-300' key={index}>{author.attributes.name}</span>

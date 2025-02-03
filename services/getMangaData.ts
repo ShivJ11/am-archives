@@ -122,3 +122,16 @@ export function getMangaChaptersList(mangaId:string,offset?:number){
     return fetch(url, options)
         .then(handleResponse);
 }
+
+export function getMangaGroup(mangaId:string,translatedLanguage:string,groups:string){
+    const url=`https://api.mangadex.org/manga/${mangaId}/aggregate?translatedLanguage[]=${translatedLanguage}&groups[]=${groups}`
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+    }
+    return fetch(url, options)
+        .then(handleResponse);
+}
