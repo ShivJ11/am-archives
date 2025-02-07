@@ -13,14 +13,16 @@ const MangaChapterListPagination = ({
     totalChapters,
     currentPage,
     onPageChange,
+    contentPerPage
 }: {
     totalChapters:number|undefined;
     currentPage: number;
     onPageChange: (page: number) => void;
+    contentPerPage:number
 }) => {
     let totalPages;
     if(totalChapters){
-        totalPages = Math.ceil(totalChapters/96);
+        totalPages = Math.ceil(totalChapters/contentPerPage);
     } else{
         totalPages = 1;                
     }

@@ -80,7 +80,7 @@ const MangaChaptersScrollArea = ({ id }: { id: string }) => {
           })) : (<div></div>)}
           <div className='flex justify-center flex-wrap gap-2 mt-6'>
             {/* pagination */}
-            <MangaChapterListPagination currentPage={currentPage} onPageChange={setCurrentPage} totalChapters={totalChapters} />
+            <MangaChapterListPagination currentPage={currentPage} onPageChange={setCurrentPage} totalChapters={totalChapters} contentPerPage={96} />
           </div>
         </div>
       </div>

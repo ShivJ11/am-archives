@@ -54,7 +54,6 @@ function mangaCovers(response: { json: () => Promise<any>; ok: any }) {
             console.error('API response not OK', json);
             return Promise.reject(json);
         }
-        // ${manga.relationships.find((item: { type: string; }) => item.type === 'cover_art').attributes.fileName}`}
         let str = '';
         json.data.forEach((manga: any, index: number) => {
             const found = manga.relationships.find((item: { type: string; }) => item.type === 'manga');
@@ -66,7 +65,6 @@ function mangaCovers(response: { json: () => Promise<any>; ok: any }) {
                 }
             }
         });
-        // console.log(str);
         return getLatestMangaCoverImageDetails(str);
     });
 }
@@ -125,6 +123,22 @@ export function getMangaChaptersList(mangaId:string,offset?:number){
 
 export function getMangaGroup(mangaId:string,translatedLanguage:string,groups:string){
     const url=`https://api.mangadex.org/manga/${mangaId}/aggregate?translatedLanguage[]=${translatedLanguage}&groups[]=${groups}`
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+    }
+    return fetch(url, options)
+        .then(handleResponse);
+}
+
+export function getSearchMangaResults(searchQuery:string,offset?:number){
+    if(!offset){
+        offset=0;
+    }
+    const url=`https://api.mangadex.org/manga?limit=32&offset=${offset}&includes[]=cover_art&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&title=${searchQuery}&includedTagsMode=AND&excludedTagsMode=OR`
     const options = {
         method: 'GET',
         headers: {
