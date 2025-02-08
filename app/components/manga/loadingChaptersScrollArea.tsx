@@ -1,5 +1,4 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import Link from "next/link";
 import './manga.css'
 function LoadingChaptersScrollArea() {
     const array = new Array(8).fill(null);
@@ -95,7 +94,7 @@ const VolumeContent = () => {
           <div className='chapter-line-bottom twoLine'></div>
           <div className='chapter-line-extend twoLine'></div>
         </div>
-        <Link href={`/manga`} className='chapter-grid flex-grow'>
+        <div  className='chapter-grid flex-grow'>
           <div className='flex flex-grow items-center'>
             {/* flag image */}
             {/* <img src={`https://mangadex.org/img/flags/${processLanguageCode(manga.manga.attributes.translatedLanguage)}.svg`} onError={(e) => { (e.target as HTMLImageElement).src = 'https://mangadex.org/img/flags/gb.svg'; }} alt="" className='inline-block select-none flex-shrink-0 !h-5 !w-5 ' /> */}
@@ -135,7 +134,7 @@ const VolumeContent = () => {
               {/* {formatDistanceToNow(manga.manga.attributes.updatedAt) ?? ""} */}
             </div>
           </div>
-        </Link>
+        </div>
       </div>
     )
   }  

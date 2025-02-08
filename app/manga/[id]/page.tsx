@@ -12,6 +12,7 @@ import { capitalizeFirstLetter, formatDate } from '@/lib/helper';
 import MangaChaptersScrollArea from '@/app/components/manga/mangaChaptersScrollArea';
 import LoadingChaptersScrollArea from '@/app/components/manga/loadingChaptersScrollArea';
 import Head from 'next/head';
+import { LoadingMangaDetailsPage } from '@/app/components/manga/loadingMangaDetailsPage';
 
 const MangaDetails = () => {
     const pathname = usePathname();
@@ -40,7 +41,10 @@ const MangaDetails = () => {
     }, [mangaId, router]);
 
     if (loading) {
-        return <div><LoadingChaptersScrollArea /></div>;
+        return <div>
+            <LoadingMangaDetailsPage />
+            <LoadingChaptersScrollArea />
+        </div>;
     }
 
     if (!manga) {

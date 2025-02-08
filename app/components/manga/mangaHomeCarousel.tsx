@@ -13,7 +13,7 @@ import Link from 'next/link';
 
 export function HomeCarousel() {
     const plugin = React.useRef(
-        Autoplay({ delay: 2000, stopOnInteraction: false, stopOnFocusIn: false, stopOnLastSnap: false, stopOnMouseEnter: false })
+        Autoplay({ delay: 4000, stopOnInteraction: false, stopOnFocusIn: false, stopOnLastSnap: false, stopOnMouseEnter: false })
     )
     const [mangaData, setMangaData] = useState<MangaData[] | null>(null);
     useEffect(() => {
