@@ -13,7 +13,7 @@ function LatestUpdates() {
     useEffect(() => {
         async function fetchLatestManga() {
           try {
-            const [result, cover] = await Promise.all([getLatestUpdates(), getLatestMangaCovers()]);
+            const [result, cover] = await Promise.all([getLatestUpdates(16,0), getLatestMangaCovers(16,0)]);
             setMangaData(result.data);
             setMangaCover(cover.data);
           } catch (error) {

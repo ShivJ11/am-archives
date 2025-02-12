@@ -525,3 +525,15 @@
     user-select: none;
     width: 1.5rem;
 }
+
+.chapter-feed-container {
+    grid-template-areas: "title title" "art list";
+}
+.chapter-feed-container.expand:not(.compact) {
+    grid-template-areas: "art title" "art list" "art expand";
+}
+@media (min-width: 40rem) {
+    .chapter-feed-container {
+        grid-template-areas: "art title" "art list";
+    }
+}

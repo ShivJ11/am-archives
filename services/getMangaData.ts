@@ -11,8 +11,11 @@ export function getPopularNewTitles() {
         .then(handleResponse);
 }
 
-export function getLatestUpdates() {
-    const url = 'https://api.mangadex.org/chapter?limit=16&offset=0&includes[]=user&includes[]=scanlation_group&includes[]=manga&contentRating[]=safe&contentRating[]=suggestive&order[readableAt]=desc';
+export function getLatestUpdates(limit:number,offset?:number) {
+    if(!offset){
+        offset=0;
+    }
+    const url = `https://api.mangadex.org/chapter?limit=${limit}&offset=${offset}&includes[]=user&includes[]=scanlation_group&includes[]=manga&contentRating[]=safe&contentRating[]=suggestive&order[readableAt]=desc`;
     const options = {
         method: 'GET',
         headers: {
@@ -24,8 +27,11 @@ export function getLatestUpdates() {
         .then(handleResponse);
 }
 
-export function getLatestMangaCovers() {
-    const url = 'https://api.mangadex.org/chapter?limit=16&offset=0&includes[]=user&includes[]=scanlation_group&includes[]=manga&contentRating[]=safe&contentRating[]=suggestive&order[readableAt]=desc';
+export function getLatestMangaCovers(limit:number,offset?:number) {
+    if(!offset){
+        offset=0;
+    }
+    const url = `https://api.mangadex.org/chapter?limit=${limit}&offset=${offset}&includes[]=user&includes[]=scanlation_group&includes[]=manga&contentRating[]=safe&contentRating[]=suggestive&order[readableAt]=desc`;
     const options = {
         method: 'GET',
         headers: {

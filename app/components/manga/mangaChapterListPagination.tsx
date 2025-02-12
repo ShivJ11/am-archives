@@ -13,12 +13,14 @@ const MangaChapterListPagination = ({
     totalChapters,
     currentPage,
     onPageChange,
-    contentPerPage
+    contentPerPage,
+    showLastPage = true
 }: {
     totalChapters:number|undefined;
     currentPage: number;
     onPageChange: (page: number) => void;
-    contentPerPage:number
+    contentPerPage:number;
+    showLastPage?:boolean
 }) => {
     let totalPages;
     if(totalChapters){
@@ -85,7 +87,7 @@ const MangaChapterListPagination = ({
                 )}
 
                 {/* Show the last page number */}
-                {showRightEllipsis && (
+                {showRightEllipsis && showLastPage && (
                     <PaginationItem>
                         <PaginationLink
                             href="#"
