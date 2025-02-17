@@ -73,7 +73,7 @@ const VolumeContent = () => {
       </div>
     )
   }
-  const UploaderContentWithStyle = () => {
+  export const UploaderContentWithStyle = () => {
     return (
       <div className='rounded flex flex-col gap-2 h-auto'>
         <div className='rounded-sm' style={{ backgroundColor: 'rgb(75 85 99 )' }}>

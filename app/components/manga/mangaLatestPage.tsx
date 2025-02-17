@@ -8,6 +8,7 @@ import { processLanguageCode } from '@/lib/helper';
 import { formatDistanceToNow } from 'date-fns';
 import { useRouter, useSearchParams } from 'next/navigation';
 import MangaChapterListPagination from './mangaChapterListPagination';
+import { LoadingMangaLatestPage } from './loadingMangaLatestPage';
 
 const MangaLatestPage = () => {
     const [chapterData, setChapterData] = React.useState<MangaData[] | null>(null);
@@ -37,7 +38,7 @@ const MangaLatestPage = () => {
         fetchMangaChapters();
     }, [pageNumber]);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div><LoadingMangaLatestPage/></div>;
     if (!chapterData || !mangaCover) return <div>No data</div>;
 
     // Group chapters by manga ID
@@ -60,6 +61,7 @@ const MangaLatestPage = () => {
                 const cover = mangaCover.find((id: { id: string }) => id.id === mangaid);
                 const fileName = cover?.relationships.find((item: { type: string }) => item.type === 'cover_art')?.attributes.fileName;
                 const visibleChapters = showAll ? chapters : chapters.slice(0, 3);
+                const mangaId=manga.relationships.find((item: { type: string }) => item.type === 'manga')?.id;
                 return (
                     <div
                         key={mangaid}
@@ -68,20 +70,20 @@ const MangaLatestPage = () => {
                     >
                         {/* Image section (Left side) */}
                         <div className="border-sm max-w-full overflow-hidden relative shadow-sm lg:h-[200px]">
-                            <div className="group flex items-start mb-auto select-none w-full h-full left-0 top-0 absolute">
+                            <Link href={`/manga/${mangaId}`} className="group flex items-start mb-auto select-none w-full h-full left-0 top-0 absolute">
                                 <img
                                     src={`https://uploads.mangadex.org/covers/${cover?.id}/${fileName}`}
                                     alt={`Cover of ${cover?.attributes.title.en}`}
                                     className="rounded shadow-md w-full h-[100px]  lg:h-[240px] object-cover"
                                 />
-                            </div>
+                            </Link>
                         </div>
 
                         {/* Content section (Right side) */}
                         <div className="flex flex-col gap-2">
-                            <div className="self-start text-sm font-bold leading-tight w-full overflow-hidden break-words lg:text-base lg:leading-6 text-gray-300 line-clamp-1">
+                            <Link href={`/manga/${mangaId}`} className="self-start text-sm font-bold leading-tight w-full overflow-hidden break-words lg:text-base lg:leading-6 text-gray-300 line-clamp-1">
                                 {cover?.attributes.title.en}
-                            </div>
+                            </Link>
                             <div className="border-b-[1px] border-b-gray-300 w-full "></div>
 
                             {/* UploaderContent - Render all chapters of this manga */}
