@@ -3,6 +3,7 @@ import React from 'react'
 import MangaHeader from '@/app/components/layout/mangaHeader'
 import { useSearchParams } from 'next/navigation'
 import MangaSearchResult from '@/app/components/manga/mangaSearchResult'
+import PageScrollUp from '@/app/components/root/pageScrollUp'
 
 const MangaSearch = () => {
     const searchParams = useSearchParams()
@@ -15,7 +16,8 @@ const MangaSearch = () => {
                 <div className='mt-4'>
                     <MangaSearchResult searchQuery={searchQuery} />
                 </div>
-            </div>            
+            </div>       
+            <PageScrollUp/>     
         </>
     )
 }   

@@ -1,5 +1,6 @@
 import MangaHeader from '@/app/components/layout/mangaHeader'
 import MangaLatestPage from '@/app/components/manga/mangaLatestPage'
+import PageScrollUp from '@/app/components/root/pageScrollUp'
 import React from 'react'
 
 const LatestPage = () => {
@@ -12,6 +13,7 @@ const LatestPage = () => {
             <MangaLatestPage/>
             </div>
         </div>
+        <PageScrollUp/>
     </>
   )
 }

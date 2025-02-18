@@ -13,6 +13,7 @@ import MangaChaptersScrollArea from '@/app/components/manga/mangaChaptersScrollA
 import LoadingChaptersScrollArea from '@/app/components/manga/loadingChaptersScrollArea';
 import Head from 'next/head';
 import { LoadingMangaDetailsPage } from '@/app/components/manga/loadingMangaDetailsPage';
+import PageScrollUp from '@/app/components/root/pageScrollUp';
 
 const MangaDetails = () => {
     const pathname = usePathname();
@@ -111,6 +112,7 @@ const MangaDetails = () => {
                 </div>
                 <MangaChaptersScrollArea id={mangaId} />
             </div>
+            <PageScrollUp/>
         </>
     );
 }

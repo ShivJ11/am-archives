@@ -71,7 +71,7 @@ const MangaItem = ({ manga, cover }: { manga: any, cover: any }) => {
             <h6 className='text-base font-bold line-clamp-1 break-all'>{cover.attributes.title.en}</h6>
           </Link>
           <div className='flex items-center justify-between'>
-            <Link href={{}} className='flex items-center gap-1 sm:gap-2 mr-1 sm:mr-2'>
+            <Link href={`/chapter/${manga.id}`} className='flex items-center gap-1 sm:gap-2 mr-1 sm:mr-2'>
               <span className='line-clamp-1 text-base'>
                 {manga.attributes.volume ? `Vol. ${manga.attributes.volume}` : ''} {manga.attributes.chapter ? `Ch. ${manga.attributes.chapter}` : ''} {manga.attributes.title ? `- ${manga.attributes.title}` : ''}
               </span>
