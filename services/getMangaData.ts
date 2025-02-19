@@ -155,3 +155,16 @@ export function getSearchMangaResults(searchQuery:string,offset?:number){
     return fetch(url, options)
         .then(handleResponse);
 }
+
+export function getMangaTag(){
+    const url=`https://api.mangadex.org/manga/tag`
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+    }
+    return fetch(url, options)
+        .then(handleResponse);
+}
