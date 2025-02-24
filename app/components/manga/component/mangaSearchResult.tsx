@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import MangaChapterListPagination from './mangaChapterListPagination';
-import { LoadingSearchResults } from './loadingSearchResult';
+import { LoadingSearchResults } from '../loadingUI/loadingSearchResult';
 
 const MangaSearchResult = (searchQuery: { searchQuery: string }) => {
     const [mangaData, setMangaData] = React.useState<MangaData[] | null>(null);

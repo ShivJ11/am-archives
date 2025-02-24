@@ -1,5 +1,5 @@
 import MangaHeader from '@/app/components/layout/mangaHeader'
-import MangaTags from '@/app/components/manga/mangaTags'
+import MangaTags from '@/app/components/manga/component/mangaTags'
 import PageScrollUp from '@/app/components/root/pageScrollUp'
 import React from 'react'
 

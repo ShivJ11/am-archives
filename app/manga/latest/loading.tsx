@@ -1,4 +1,4 @@
-import { LoadingMangaLatestPage } from '@/app/components/manga/loadingMangaLatestPage'
+import { LoadingMangaLatestPage } from '@/app/components/manga/loadingUI/loadingMangaLatestPage'
 import { Skeleton } from '@/components/ui/skeleton'
 import React from 'react'
 

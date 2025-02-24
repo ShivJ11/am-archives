@@ -3,7 +3,7 @@ import { MangaTag } from '@/interfaces/manga.interface'
 import { capitalizeFirstLetter } from '@/lib/helper';
 import { getMangaTag } from '@/services/getMangaData';
 import React from 'react'
-import LoadingMangaTags from './loadingMangaTags';
+import LoadingMangaTags from '../loadingUI/loadingMangaTags';
 
 const MangaTags = () => {
     const [mangaTags, setMangaTags] = React.useState<MangaTag[] | null>(null);

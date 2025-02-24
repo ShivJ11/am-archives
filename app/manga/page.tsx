@@ -1,6 +1,6 @@
 import MangaHeader from "../components/layout/mangaHeader"
-import { HomeCarousel } from "../components/manga/mangaHomeCarousel"
-import LatestUpdates from "../components/manga/mangaLatestUpdates"
+import { HomeCarousel } from "../components/manga/component/mangaHomeCarousel"
+import LatestUpdates from "../components/manga/component/mangaLatestUpdates"
 import { Metadata } from 'next';
 import PageScrollUp from "../components/root/pageScrollUp";
 

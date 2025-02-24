@@ -1,4 +1,4 @@
-import { LoadingSearchResults } from "@/app/components/manga/loadingSearchResult";
+import { LoadingSearchResults } from "@/app/components/manga/loadingUI/loadingSearchResult";
 import { Skeleton } from "@/components/ui/skeleton";
 
 function LoadingPage(){

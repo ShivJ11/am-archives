@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { MangaData } from '@/interfaces/manga.interface';
 import { getLatestMangaCovers, getLatestUpdates } from '@/services/getMangaData';
 import { formatDistanceToNow } from 'date-fns';
-import LoadingPage from './loadingLatestUpdate';
+import LoadingPage from '../loadingUI/loadingLatestUpdate';
 
 function LatestUpdates() {
   const [mangaData, setMangaData] = useState<MangaData[] | null>(null);

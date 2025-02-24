@@ -1,5 +1,5 @@
-import LoadingChaptersScrollArea from "@/app/components/manga/loadingChaptersScrollArea";
-import { LoadingMangaDetailsPage } from "@/app/components/manga/loadingMangaDetailsPage";
+import LoadingChaptersScrollArea from "@/app/components/manga/loadingUI/loadingChaptersScrollArea";
+import { LoadingMangaDetailsPage } from "@/app/components/manga/loadingUI/loadingMangaDetailsPage";
 
 function LoadingPage() {
     return (

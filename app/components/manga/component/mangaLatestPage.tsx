@@ -8,7 +8,7 @@ import { processLanguageCode } from '@/lib/helper';
 import { formatDistanceToNow } from 'date-fns';
 import { useRouter, useSearchParams } from 'next/navigation';
 import MangaChapterListPagination from './mangaChapterListPagination';
-import { LoadingMangaLatestPage } from './loadingMangaLatestPage';
+import { LoadingMangaLatestPage } from '../loadingUI/loadingMangaLatestPage';
 
 const MangaLatestPage = () => {
     const [chapterData, setChapterData] = React.useState<MangaData[] | null>(null);

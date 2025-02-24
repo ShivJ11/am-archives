@@ -9,10 +9,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import React from 'react'
 import '../../components/manga/manga.css'
 import { capitalizeFirstLetter, formatDate } from '@/lib/helper';
-import MangaChaptersScrollArea from '@/app/components/manga/mangaChaptersScrollArea';
-import LoadingChaptersScrollArea from '@/app/components/manga/loadingChaptersScrollArea';
+import MangaChaptersScrollArea from '@/app/components/manga/component/mangaChaptersScrollArea';
+import LoadingChaptersScrollArea from '@/app/components/manga/loadingUI/loadingChaptersScrollArea';
 import Head from 'next/head';
-import { LoadingMangaDetailsPage } from '@/app/components/manga/loadingMangaDetailsPage';
+import { LoadingMangaDetailsPage } from '@/app/components/manga/loadingUI/loadingMangaDetailsPage';
 import PageScrollUp from '@/app/components/root/pageScrollUp';
 
 const MangaDetails = () => {

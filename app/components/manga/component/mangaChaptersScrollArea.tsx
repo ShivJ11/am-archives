@@ -2,7 +2,7 @@ import { MangaFeedData } from '@/interfaces/manga.interface';
 import { getMangaChaptersList } from '@/services/getMangaData';
 import Link from 'next/link';
 import React from 'react'
-import LoadingChaptersScrollArea from './loadingChaptersScrollArea';
+import LoadingChaptersScrollArea from '../loadingUI/loadingChaptersScrollArea';
 import { processLanguageCode } from '@/lib/helper';
 import { formatDistanceToNow } from 'date-fns';
 import MangaChapterListPagination from './mangaChapterListPagination';

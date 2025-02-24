@@ -1,4 +1,4 @@
-import LoadingMangaTags from "@/app/components/manga/loadingMangaTags";
+import LoadingMangaTags from "@/app/components/manga/loadingUI/loadingMangaTags";
 import { Skeleton } from "@/components/ui/skeleton";
 
 function LoadingPage(){
