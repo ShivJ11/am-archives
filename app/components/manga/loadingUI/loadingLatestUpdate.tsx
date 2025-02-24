@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton';
 import React from 'react'
-import './manga.css'
+import '../manga.css'
 import Link from 'next/link';
 
 function LoadingPage() {

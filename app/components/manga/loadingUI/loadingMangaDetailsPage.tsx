@@ -1,5 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import './manga.css'
+import '../manga.css'
 import { Separator } from "@/components/ui/separator";
 
 export function LoadingMangaDetailsPage() {

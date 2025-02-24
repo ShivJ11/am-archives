@@ -1,5 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import './manga.css'
+import '../manga.css'
 function LoadingChaptersScrollArea() {
     const array = new Array(8).fill(null);
     return (

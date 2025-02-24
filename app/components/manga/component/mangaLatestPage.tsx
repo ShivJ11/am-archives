@@ -2,7 +2,7 @@
 import { MangaData } from '@/interfaces/manga.interface';
 import { getLatestMangaCovers, getLatestUpdates } from '@/services/getMangaData';
 import React from 'react'
-import './manga.css'
+import '../manga.css'
 import Link from 'next/link';
 import { processLanguageCode } from '@/lib/helper';
 import { formatDistanceToNow } from 'date-fns';

@@ -6,7 +6,7 @@ import { getPopularNewTitles } from '@/services/getMangaData'
 import Autoplay from 'embla-carousel-autoplay';
 import React from 'react';
 import { useEffect, useState } from 'react';
-import './manga.css'
+import '../manga.css'
 import { ScrollArea } from '@/components/ui/scroll-area';
 import LoadingPage from '@/app/manga/loading';
 import Link from 'next/link';

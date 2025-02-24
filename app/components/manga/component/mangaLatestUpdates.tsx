@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import './manga.css'
+import '../manga.css'
 import Link from 'next/link'
 import { MangaData } from '@/interfaces/manga.interface';
 import { getLatestMangaCovers, getLatestUpdates } from '@/services/getMangaData';
