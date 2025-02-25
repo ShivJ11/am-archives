@@ -1,12 +1,12 @@
-import { MangaData } from '@/interfaces/manga.interface'
-import { getSearchMangaResults } from '@/services/getMangaData';
+import { MangaData } from '@/interfaces/manga.interface';
+import { getMangaDetailsByTag } from '@/services/getMangaData';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import MangaChapterListPagination from './mangaChapterListPagination';
 import { LoadingSearchResults } from '../loadingUI/loadingSearchResult';
 import MangaCardComponent from './mangaCardComponent';
+import MangaChapterListPagination from './mangaChapterListPagination';
 
-const MangaSearchResult = (searchQuery: { searchQuery: string }) => {
+const MangaTagPage = (tag:{tagId:string,tagName:string}) => {
     const [mangaData, setMangaData] = React.useState<MangaData[] | null>(null);
     const [loading, setLoading] = React.useState<boolean>(true);
     const [totalChapters, setTotalChapters] = React.useState<number>();
@@ -18,30 +18,30 @@ const MangaSearchResult = (searchQuery: { searchQuery: string }) => {
         async function fetchMangaDetails() {
             try {
                 const offset = (pageNumber - 1) * itemsPerPage;
-                const result = await getSearchMangaResults(searchQuery.searchQuery,offset);
+                const result = await getMangaDetailsByTag(tag.tagId,offset);
                 setMangaData(result.data);
                 setTotalChapters(result.total);
             }
             catch (error) {
-                console.error("Error fetching trending manga data", error);
+                console.error("Error fetching manga data", error);
             }
             finally {
                 setLoading(false);
             }
         }
         fetchMangaDetails()
-    }, [searchQuery,pageNumber])
+    }, [tag,pageNumber])
     const handlePageChange = (page: number) => {
-        router.push(`/manga/search?q=${searchQuery.searchQuery}&page=${page}`);
+        router.push(`/manga/tag/${tag.tagName}/${tag.tagId}?page=${page}`);
     };
     if (loading) {
         return <div><LoadingSearchResults/></div>;
     }
     if (!mangaData) {
-        return <div>No Search Results for {searchQuery.searchQuery}</div>;
+        return <div>No Search Results for {tag.tagName}</div>;
     }
-    return (
-        <>        
+  return (
+    <>        
         <MangaCardComponent mangaData={mangaData}/>
         {mangaData.length > 0 ? (
         <div className='flex justify-center flex-wrap gap-2 mt-6 pb-7 text-gray-300'>
@@ -49,7 +49,7 @@ const MangaSearchResult = (searchQuery: { searchQuery: string }) => {
         </div>
         ):(<></>)}
         </>
-    )    
+  )
 }
 
-export default MangaSearchResult
+export default MangaTagPage

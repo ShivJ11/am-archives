@@ -168,3 +168,19 @@ export function getMangaTag(){
     return fetch(url, options)
         .then(handleResponse);
 }
+
+export function getMangaDetailsByTag(tagId:string,offset?:number){
+    if(!offset){
+        offset=0;
+    }
+    const url=`https://api.mangadex.org/manga?limit=32&offset=${offset}&includes[]=cover_art&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&includedTags[]=${tagId}&order[followedCount]=desc`
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+    }
+    return fetch(url, options)
+        .then(handleResponse);
+}

@@ -64,3 +64,11 @@ export function isMangaAttributes(relationship: ChapterDetailsRelationships): re
 export function isScanlationGroupAttributes(relationship: ChapterDetailsRelationships): relationship is { id:string; type: 'scanlation_group'; attributes: ScanlationGroupAttributes } {
   return relationship.type === 'scanlation_group';
 }
+
+export function removeSpace(query:string){
+  return query.replaceAll(' ','-')
+}
+
+export function removeHyphen(query:string){
+  return query.replaceAll('-',' ')
+}
