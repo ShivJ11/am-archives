@@ -10,6 +10,7 @@ import '../manga.css'
 import { ScrollArea } from '@/components/ui/scroll-area';
 import LoadingPage from '@/app/manga/loading';
 import Link from 'next/link';
+import { removeSpace } from '@/lib/helper';
 
 export function HomeCarousel() {
     const plugin = React.useRef(
@@ -66,7 +67,7 @@ export function HomeCarousel() {
                                                         <div className='pt-2 opacity-100'>{manga.attributes.tags
                                                             .filter((tag: any) => tag.attributes.group === 'genre') // Filter only genre tags
                                                             .map((tag: any, index: number) => (
-                                                                <span className='manga-tags mr-2 mt-1' key={index}>{tag.attributes.name.en}</span> // Render the genre name
+                                                                <Link href={`/manga/tag/${removeSpace(tag.attributes.name.en)}/${tag.id}`} className='manga-tags mr-2 mt-1' key={index}>{tag.attributes.name.en}</Link> // Render the genre name
                                                             ))}</div>
                                                         <div className='text-gray-300 manga-desc pt-2'>
                                                             <ScrollArea className="rounded-md scroll-area-height">

@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react'
 import '../../components/manga/manga.css'
-import { capitalizeFirstLetter, formatDate } from '@/lib/helper';
+import { capitalizeFirstLetter, formatDate, removeSpace } from '@/lib/helper';
 import MangaChaptersScrollArea from '@/app/components/manga/component/mangaChaptersScrollArea';
 import LoadingChaptersScrollArea from '@/app/components/manga/loadingUI/loadingChaptersScrollArea';
 import Head from 'next/head';
@@ -102,7 +102,7 @@ const MangaDetails = () => {
                         <div className='pt-3 pb-2 detail-page-last-section-separator'><Separator /></div>
                         <div className=''><span className='font-extrabold'>Genres: </span>
                             {manga.attributes.tags?.map((genre) => (
-                                <span className='border-box mr-2 mt-1' key={genre.id || genre.attributes.name.en}>{genre.attributes.name.en}</span>
+                                <Link href={`/manga/tag/${removeSpace(genre.attributes.name.en)}/${genre.id}`} className='border-box mr-2 mt-1' key={genre.id || genre.attributes.name.en}>{genre.attributes.name.en}</Link>
                             ))}
                         </div>
                         <div className='pt-3 pb-2 detail-page-last-section-separator'><Separator /></div>
