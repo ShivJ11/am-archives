@@ -6,10 +6,13 @@ import { MangaData } from '@/interfaces/manga.interface';
 import { getLatestMangaCovers, getLatestUpdates } from '@/services/getMangaData';
 import { formatDistanceToNow } from 'date-fns';
 import LoadingPage from '../loadingUI/loadingLatestUpdate';
+import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
 
 function LatestUpdates() {
   const [mangaData, setMangaData] = useState<MangaData[] | null>(null);
   const [mangaCover, setMangaCover] = useState<MangaData[] | null>(null);
+  const router = useRouter();
   useEffect(() => {
     async function fetchLatestManga() {
       try {
@@ -25,9 +28,18 @@ function LatestUpdates() {
   if (!mangaData || !mangaCover) {
     return <LoadingPage />
   }
+  const buttonClick = () => {
+    router.push(`/manga/latest`);
+};
   return (
     <div className='latest-update-container font-bold text-gray-300 text-4xl'>
-      <div className='font-bold text-gray-300 text-4xl'>Latest Updates</div>
+      <div className='flex mb-2 justify-between'>
+        <div className='font-bold text-gray-300 text-4xl'>Latest Updates</div>
+        <Button className='bg-transparent hover:bg-transparent right-0' type='button' onClick={buttonClick}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        </svg>
+        </Button>
+      </div>
       <div className='grid gap-x-6 3xl:grid-cols-4 2xl:grid-cols-3 lg:grid-cols-2 grid-cols-1'>
         <div style={{ backgroundColor: 'rgb(75 85 99 )', minHeight: '200px' }}>
           <div className='grid gap-4 p-4'>
