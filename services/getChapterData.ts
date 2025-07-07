@@ -15,8 +15,10 @@ function fetchData(url: string, options: RequestInit, router: any) {
         });
 }
 
+const BASE_URL = `https://am-archives-api-f9eyawcrf0hzdmcb.southeastasia-01.azurewebsites.net/api/Chapter`;
+
 export function getChapterDetailsById(id: string, router: any) {
-    const url = `https://api.mangadex.org/chapter/${id}?includes[]=scanlation_group&includes[]=manga&includes[]=user`;
+    const url = `${BASE_URL}/details/${id}`;
     const options = {
         method: 'GET',
         headers: {
@@ -32,7 +34,7 @@ export function getChapterDetailsById(id: string, router: any) {
 }
 
 export function getChapterFeedById(id: string, router: any) {
-    const url = `https://api.mangadex.org/at-home/server/${id}?forcePort443=false`;
+    const url = `${BASE_URL}/feed/${id}`;
     const options = {
         method: 'GET',
         headers: {

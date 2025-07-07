@@ -1,5 +1,7 @@
+const BASE_URL = `https://am-archives-api-f9eyawcrf0hzdmcb.southeastasia-01.azurewebsites.net/api/Manga`;
+
 export function getPopularNewTitles() {
-    const url = 'https://api.mangadex.org/manga?includes[]=cover_art&includes[]=artist&includes[]=author&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&hasAvailableChapters=true';
+    const url = `${BASE_URL}/popular-new-titles`;
     const options = {
         method: 'GET',
         headers: {
@@ -15,7 +17,7 @@ export function getLatestUpdates(limit:number,offset?:number) {
     if(!offset){
         offset=0;
     }
-    const url = `https://api.mangadex.org/chapter?limit=${limit}&offset=${offset}&includes[]=user&includes[]=scanlation_group&includes[]=manga&contentRating[]=safe&contentRating[]=suggestive&order[readableAt]=desc`;
+    const url = `${BASE_URL}/latest-updates?limit=${limit}&offset=${offset}`;
     const options = {
         method: 'GET',
         headers: {
@@ -31,7 +33,7 @@ export function getLatestMangaCovers(limit:number,offset?:number) {
     if(!offset){
         offset=0;
     }
-    const url = `https://api.mangadex.org/chapter?limit=${limit}&offset=${offset}&includes[]=user&includes[]=scanlation_group&includes[]=manga&contentRating[]=safe&contentRating[]=suggestive&order[readableAt]=desc`;
+    const url = `${BASE_URL}/latest-manga-covers?limit=${limit}&offset=${offset}`;
     const options = {
         method: 'GET',
         headers: {
@@ -43,7 +45,7 @@ export function getLatestMangaCovers(limit:number,offset?:number) {
         .then(mangaCovers)
 }
 export function getLatestMangaCoverImageDetails(id: string) {
-    const url = `https://api.mangadex.org/manga?${id}&limit=100&includes[]=author&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&contentRating[]=pornographic&includes[]=cover_art`;
+    const url = `${BASE_URL}/latest-manga-cover-image-details?id=${id}`;
     const options = {
         method: 'GET',
         headers: {
@@ -76,7 +78,7 @@ function mangaCovers(response: { json: () => Promise<any>; ok: any }) {
 }
 
 export function getMangaDetailsById(id: string, router: any) {
-    const url = `https://api.mangadex.org/manga/${id}?includes[]=artist&includes[]=author&includes[]=cover_art`
+    const url = `${BASE_URL}/details/${id}`
     const options = {
         method: 'GET',
         headers: {
@@ -115,7 +117,7 @@ export function getMangaChaptersList(mangaId:string,offset?:number){
     if(!offset){
         offset=0;
     }
-    const url = `https://api.mangadex.org/manga/${mangaId}/feed?limit=96&includes[]=scanlation_group&includes[]=user&order[volume]=asc&order[chapter]=asc&offset=${offset}&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica`;
+    const url = `${BASE_URL}/chapters/${mangaId}?offset=${offset}`;
     const options = {
         method: 'GET',
         headers: {
@@ -128,7 +130,7 @@ export function getMangaChaptersList(mangaId:string,offset?:number){
 }
 
 export function getMangaGroup(mangaId:string,translatedLanguage:string,groups:string){
-    const url=`https://api.mangadex.org/manga/${mangaId}/aggregate?translatedLanguage[]=${translatedLanguage}&groups[]=${groups}`
+    const url=`${BASE_URL}/group/${mangaId}?translatedLanguage=${translatedLanguage}&groups=${groups}`
     const options = {
         method: 'GET',
         headers: {
@@ -144,7 +146,7 @@ export function getSearchMangaResults(searchQuery:string,offset?:number){
     if(!offset){
         offset=0;
     }
-    const url=`https://api.mangadex.org/manga?limit=32&offset=${offset}&includes[]=cover_art&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&title=${searchQuery}&includedTagsMode=AND&excludedTagsMode=OR`
+    const url=`${BASE_URL}/search?searchQuery=${searchQuery}&offset=${offset}`
     const options = {
         method: 'GET',
         headers: {
@@ -157,7 +159,7 @@ export function getSearchMangaResults(searchQuery:string,offset?:number){
 }
 
 export function getMangaTag(){
-    const url=`https://api.mangadex.org/manga/tag`
+    const url=`${BASE_URL}/tags`
     const options = {
         method: 'GET',
         headers: {
@@ -173,7 +175,7 @@ export function getMangaDetailsByTag(tagId:string,offset?:number){
     if(!offset){
         offset=0;
     }
-    const url=`https://api.mangadex.org/manga?limit=32&offset=${offset}&includes[]=cover_art&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&includedTags[]=${tagId}&order[followedCount]=desc`
+    const url=`${BASE_URL}/by-tag?tagId=${tagId}&offset=${offset}`
     const options = {
         method: 'GET',
         headers: {
